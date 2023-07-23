@@ -1,0 +1,59 @@
+[build-system]
+requires = ["setuptools>=63", "wheel", "setuptools_scm>=6.2"]
+build-backend = "backend"
+backend-path = ["_godownload_build"]
+
+[tool.cibuildwheel]
+build = "cp39-*"
+before-all = []
+test-command = [
+  "go version",
+  "go help",
+  "gofmt version",
+  "gofmt help",
+]
+
+[tool.cibuildwheel.linux]
+manylinux-x86_64-image = "manylinux1"
+manylinux-i686-image = "manylinux1"
+
+[project]
+name = "golang"
+description = "The Go programming language"
+readme = "README.md"
+keywords = ["go", "golang", "programming-language"]
+license = {text = "BSD-3-Clause"}
+classifiers = [
+    "License :: OSI Approved :: BSD License",
+    "Operating System :: OS Independent",
+    "Operating System :: MacOS :: MacOS X",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: POSIX :: Linux",
+    "Environment :: Console",
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Information Technology",
+    "Intended Audience :: End Users/Desktop",
+    "Topic :: Security",
+    "Topic :: Utilities",
+]
+dynamic = ["version"]
+
+[project.urls]
+homepage = "https://go.dev"
+download_url = "https://go.dev/dl/"
+"Source Code" = "https://github.com/nightlark/golang-wheel"
+"Bug Tracker" = "https://github.com/nightlark/golang-wheel/issues"
+
+[project.scripts]
+go = "golang:go"
+gofmt = "golang:gofmt"
+
+#[tool.setuptools.packages.find]
+#where = ["src"]  # list of folders that contain the packages (["."] by default)
+
+#[tool.setuptools.package-data]
+#golang = ["golang*"]
+
+[tool.setuptools_scm]
+write_to = "src/golang/_version.py"
